@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="{% static "css/css/profileClient.css"%}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Profile</title>
+</head>
+
+<body>
+
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                        </a>
+                        <h1>{{name}}</h1>
+                        <p>{{email}}</p>
+                        <div class="list-group " >
+                            <a style="color: rgb(255, 255, 255);border: 0px; border-radius: 0%; background-color: rgba(128, 255, 0, 0.199);"  href="{% url 'home' %}" class="list-group-item list-group-item-action">Return <span class="fa fa-arrow-left fa-2x" aria-hidden="true"></span></a>
+                            <a style="color: rgb(255, 255, 255); border: 0px; border-radius: 0%; background-color: rgba(255, 0, 0, 0.199);"  href="{% url 'accounts:Logout' %}" class="list-group-item list-group-item-action">Logout <span  class="fa fa-sign-out fa-2x" ></span></a>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="#activities"> <i class="fa fa-tasks"></i> Recent Activity <span
+                                    class="label label-warning pull-right r-activity">9</span></a></li>
+                        <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                        <li><a href="#"> <i class="fa fa-hacker-news"></i> Your Works</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+                <div class="panel">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Your offer <strong>{{offer}}</strong></h4>
+                            <p class="card-text">descriptin of the offer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        {{Name}}
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><span>First Name </span>: {{FirstName}}</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Last Name </span>: {{LastName}}</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Address </span>: {{address}}</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Birthday</span>: </p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>CCP </span>: {{ccp}}</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Email </span>: {{email}}</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Phone </span>: {{phone}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row" id="activities" >
+                        {% for notification in Notifactions %}
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4 class="red"><strong>from {{notification.staff}}</strong></h4>
+                                            
+                                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{notification.created_at}}</p>
+                                        </div>
+                                        <div class="col-md-2 checkedbtn" >
+                                            
+                                            {% if notification.checked %}
+                                            <span style="color: green;"><i class="fa fa-3x fa-check-circle" aria-hidden="true"></i></span>    
+                                            {% else %}
+                                            <a href="{% url 'accounts:Check' notification.id %}"><span ><i class="fa fa-3x fa-check-circle" aria-hidden="true"></i></span></a>
+                                            {% endif %}
+                                                
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        {% endfor %}
+                        
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

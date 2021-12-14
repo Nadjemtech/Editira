@@ -5,6 +5,10 @@ from translate import translate
 # Create your views here.
 
 
+def home(request):
+    return render(request, 'index.html' )
+
+
 def Translator(request):
     to_lang = 'en'
     from_lang = 'fr'
